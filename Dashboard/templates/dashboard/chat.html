@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+
+{% block title %}{{receiver.get_full_name}}{% endblock %}
+
+{% block content %}
+    {% for message in conversation.messages.reverse %}
+        {% if message.user_from == request.user%}
+            <div class="container darker">
+                {% thumbnail request.user.profile.photo "250x250" crop="50%" as im %}
+                    <img src="{{ im.url }}" alt="Avatar" class="right"  style="width:100%;">
+                {% endthumbnail %}
+                <p class='content-right'>{{ message.content }}</p> <span class="time-left">{{ message.created }}</span>
+            </div>
+        {% else %}
+            <div class="container">
+                {% thumbnail receiver.profile.photo "250x250" crop="50%" as im %}
+                    <img src="{{ im.url }}" alt="Avatar" style="width:100%;">
+                {% endthumbnail %}
+                <p class='content-left'>{{ message.content }}</p>   <span class="time-right">{{ message.created }}</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <span><a href="#top">Go to top</a></span>
+    <div class="input-container">
+    <form action"." method="post" > 
+        {{message_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="send"></span>
+    </form>
+    </div>
+    <h6> conversation will be refleshed in <span id="countdowntimer">30 </span> seconds</h6>
+    <a id="bottom"></a>
+    <meta http-equiv="refresh" content="30;{{ request.path }}"> <!-- refresh the page -->
+{% endblock %}
+
+{% block script %}
+<script>
+var timeleft = 30;
+var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+},1000);
+
+
+</script>
+{% endblock %}

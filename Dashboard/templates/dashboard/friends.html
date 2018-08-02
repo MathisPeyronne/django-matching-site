@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block title %}Friends{% endblock %}
+
+{% block content %}
+    <h1>Friends</h1>
+    <h3>   <!-- displays the list of nm_friend and m_friends -->
+    {% for friend in nm_friends %}
+        <span><a id = "friends_list" href="/accounts/delete_friend/{{friend.username}}/">x    </a>     {{ friend.username }}</span>
+    {% endfor %}
+    {% for friend in m_friends %}
+        <span id = "friends_list"><a  href="/accounts/delete_friend/{{friend.username}}/">x    </a>     {{ friend.username }}</span>
+    {% endfor %}
+    </h3>
+
+    <form action="." method="post">
+        {{ friends_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Save changes"></p>
+    </form>
+
+    <!-- crée une form dans forms.py, puis ajouter dans views if method="post"...
+    puis display la form cidessus -->
+{% endblock %}

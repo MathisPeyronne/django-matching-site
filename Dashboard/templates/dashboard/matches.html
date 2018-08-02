@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Matches{% endblock %}
+
+{% block content %}
+    <h1>Matches</h1>
+    <ul>    <!-- list of all the conversations -->
+        {% for friend, notif in friends.items %}
+            <li>
+                <a href='{% url "chat" username=friend.username %}#bottom'>{{ friend.get_full_name }}</a>
+                {% if notif != 0 %}
+                    <span class="dot"></span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+    <h1>Profile</h1>
+    {% if user.is_authenticated %}
+    <div id="people-list"></div>
+        <div class="user">
+            <a href="{{ user.profile.photo }}"> 
+                {% thumbnail user.profile.photo "180x180" crop="50%" as im %}
+                    <img src="{{ im.url }}" id="profile_img">
+                {% endthumbnail %}
+            </a>
+            <p class="profile-name">{{ user.get_full_name }}</p>
+        </div>
+        <br>
+        <br>   <!-- I told you the css wasn't good hahah-->
+        <br>
+        <br>
+        <div id="profile_detail_header">
+                <h3>Details: <a href="{% url "edit" %}">edit</a></h3>
+                <div class="profile_detail_info">
+                    <h5>Instagram username: {{ user.username }}</h5>
+                    <h5>Gender: {% if user.profile.gender == 'M' %}  male{% else %}Female{% endif %}</h5>
+                    <h5>Email: {{ user.email }}</h5>
+                    <h5>Date fo birth: {{ user.profile.date_of_birth }}</h5>
+                </div>  
+        </div>
+        <br>
+        <a href="{% url "password_change" %}">change password</a>
+        <br>
+        <br>
+        <a href="{% url "delete_account" %}">delete account</a>
+    {% else %}
+        <h1> you are not authenticated</h1>
+    {% endif %}
+    </div>  
+{% endblock %}

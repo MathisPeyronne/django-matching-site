@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/bases.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <span class="logo">Match</span>
+         {% if request.user.is_authenticated %}
+        <ul class="menu">
+            <li {% if section == "matches" %}class="selected"{% endif %}><a href="{% url "matches" %}">Matches</a></li>
+            <li {% if section == "friends" %}class="selected"{% endif %}><a href="{% url "friends" %}">friends</a></li>
+            <li {% if section == "profile" %}class="selected"{% endif %}><a href="{% url "profile" %}">Profile</a></li>
+        </ul>
+        {% endif %}
+        
+        <span class="user">
+        {% if request.user.is_authenticated %}
+            Hello {{ request.user.first_name }}, <a href="{% url "logout" %}">Logout</a>
+        {% else %}
+            <a href="{% url "login" %}">Log-in</a>
+        {% endif %}
+        </span>
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="{{ request.get_full_path }}" class="close">×</a> 
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div id="content">
+            {% block content %}
+            {% endblock %}
+    </div>
+
+    {% block script %}
+    {% endblock %}
+</body>
+</html> 
