@@ -5,8 +5,8 @@ Its virus effect makes it ideal to touch a big public.
 Probleme to solve 
 ------------------
 
-people are afraid to ask someone out by fear of rejection. Which is a valid concern because let's say that everyone likes 130 person,
-that makes the odds of her accepting 130(big maths here)! So you will have to swallow your dignitiy 30 times in average before you 
+people are afraid to ask someone out by fear of rejection. Which is a valid concern because let's say that everyone likes 1/30 person,
+that makes the odds of her accepting 1/30(big maths here)! So you will have to swallow your dignitiy 30 times in average before you 
 get to go on a single date! You must feel somewhat depressed now, but I have a solution for you! What if you could know if the person
 likes you, while staying totally anonymous !   
 
