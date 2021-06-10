@@ -1,5 +1,5 @@
 Pillow==5.2.0
 psycopg2==2.7.5
 sorl-thumbnail==12.4.1
-django==2.0.7
+django==2.2.24
 pytz==2018.5
